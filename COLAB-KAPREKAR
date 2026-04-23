@@ -1,0 +1,88 @@
+# Validação do tipo
+numero = int(input("Digite um número de 4 dígitos: "))
+
+# Validação de faixa
+
+if numero < 0:
+    print("Erro: número deve ser positivo")
+
+elif numero > 9999:
+    print("Erro: número é inválido (0 a 9999)")
+
+# Validação de repetição de código
+else:
+
+    # separar dígitos(1)
+    d1 = numero // 1000
+    d2 = (numero % 1000) // 100
+    d3 = (numero % 100) // 10
+    d4 = numero % 10
+
+    # verificar repetição 
+    if (d1 == d2 and d1 == d3) or (d1 == d2 and d1 == d4) or (d1 == d3 and d1 == d4) or (d2 == d3 and d2 == d4):
+        print("Erro: muitos dígitos repetidos")
+
+    else:
+
+        iteracao = 0
+
+        while numero != 6174:
+
+            iteracao += 1
+
+            # separar dígitos (2)
+            d1 = numero // 1000
+            d2 = (numero % 1000) // 100
+            d3 = (numero % 100) // 10
+            d4 = numero % 10
+
+
+
+            # troca d1 e d2
+            if d1 < d2:
+                temp = d1
+                d1 = d2
+                d2 = temp
+
+            if d1 < d3:
+                temp = d1
+                d1 = d3
+                d3 = temp
+
+            if d1 < d4:
+                temp = d1
+                d1 = d4
+                d4 = temp
+
+            if d2 < d3:
+                temp = d2
+                d2 = d3
+                d3 = temp
+
+            if d2 < d4:
+                temp = d2
+                d2 = d4
+                d4 = temp
+
+            if d3 < d4:
+                temp = d3
+                d3 = d4
+                d4 = temp
+
+
+            # Construção do NDD
+            NDD = d1 * 1000 + d2 * 100 + d3 * 10 + d4
+
+            # Construção do NDC
+            NDC = d4 * 1000 + d3 * 100 + d2 * 10 + d1
+
+            # subtração
+            resultado = NDD - NDC
+             
+            #Iteração
+
+            print("Iteração", iteracao, ":", NDD, "-", NDC, "=", resultado)
+
+            numero = resultado
+
+        print("Constante de Kaprekar (6174) atingida em", iteracao, "iterações.")
